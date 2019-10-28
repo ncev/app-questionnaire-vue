@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import questionnaire from '../components/question/NeQuestion.vue'
+import result from '../components/question/NeResult.vue'
 import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -26,9 +27,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/questionnaire/:name/:firstname/:enterprise/',
+    path: '/questionnaire/:name/:firstname/:enterprise/:pool/:score',
     name: 'questionnaire',
     component: questionnaire
+  },
+  {
+    path: '/result/:entreprise/:score',
+    name: 'result',
+    component: result
   }
 ]
 

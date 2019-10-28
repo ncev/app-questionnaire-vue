@@ -15,10 +15,84 @@
                     "responses":[
                         {
                             "text": "bonjour, au revoir",
-                            "points": 1
+                            "points": 0
                         },
                         {
                             "text": "salut c'est cool",
+                            "points": 1
+                        },
+                        {
+                            "text": "test",
+                            "points": 1
+                        }
+                    ]
+                },
+                {
+                    "libelle": "coucouu",
+                    "question": "tranquille poto ?",
+                    "responses":[
+                        {
+                            "text": "wesh la street",
+                            "points": 1
+                        },
+                        {
+                            "text": "lol",
+                            "points": 0
+                        }
+                    ]
+                },
+                {
+                    "libelle": "coucouu",
+                    "question": "tranquille poto ?",
+                    "responses":[
+                        {
+                            "text": "wesh la street",
+                            "points": 1
+                        },
+                        {
+                            "text": "lol",
+                            "points": 0
+                        }
+                    ]
+                },
+                {
+                    "libelle": "coucouu",
+                    "question": "tranquille poto ?",
+                    "responses":[
+                        {
+                            "text": "wesh la street",
+                            "points": 1
+                        },
+                        {
+                            "text": "lol",
+                            "points": 0
+                        }
+                    ]
+                },
+                {
+                    "libelle": "coucouu",
+                    "question": "tranquille poto ?",
+                    "responses":[
+                        {
+                            "text": "wesh la street",
+                            "points": 1
+                        },
+                        {
+                            "text": "lol",
+                            "points": 0
+                        }
+                    ]
+                },
+                {
+                    "libelle": "coucouu",
+                    "question": "tranquille poto ?",
+                    "responses":[
+                        {
+                            "text": "wesh la street",
+                            "points": 1
+                        },
+                        {
+                            "text": "lol",
                             "points": 0
                         }
                     ]
@@ -44,7 +118,7 @@
             "questions": [
                 {
                     "question":"yo l'poto trop rigolo?",
-                    "response": [
+                    "responses": [
                         {
                             "text": "vive la biere",
                             "points": 1
@@ -57,7 +131,7 @@
                 },
                 {
                     "question": "l'eau dans 20/30 ans y'en aura plus?",
-                    "response": [
+                    "responses": [
                         {
                             "text": "bonjour",
                             "points": 1
