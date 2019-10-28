@@ -53,30 +53,30 @@
 
 <script>
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import list from '../../ressources/quest.json'
+import VueRouter from 'vue-router' // pour la redirection de l'utilisateur
+import list from '../../ressources/quest.json' // lecture du fichier JSON contenant les questions
 Vue.use(VueRouter)
 
 export default {
   name: 'neHome',
-  created: function () {
+  created: function () { // lors du chargement de la page
     const entreprises = []
-    for (const n of list.data) {
-      entreprises.push(
-        {
+    for (const n of list.data) { // pour chaque données (questions d'une entreprise) issue du fichier
+      entreprises.push( // nous insérons les données de l'entreprise au sein du tableau entreprises
+        { // afin de les afficher dans le formulaire.
           value: n.entreprise,
           text: n.entreprise
         }
       )
     }
-    this.form.enterprise = this.form.enterprise.concat(entreprises)
+    this.form.enterprise = this.form.enterprise.concat(entreprises) // nous ajoutons les données du tableau à celui du formulaire
   },
   data: () => {
     return {
       form: {
         name: '',
         firstname: '',
-        selectedEntreprise: 'SELECT_OPTION',
+        selectedEntreprise: 'SELECT_OPTION', // option par défaut
         enterprise: [
           {
             item: 'SELECT_OPTION',
@@ -89,12 +89,12 @@ export default {
     }
   },
   methods: {
-    onSubmit (evt) {
+    onSubmit (evt) { // lors de la validation du formulaire
       const self = this
       this.$router.push(
         {
-          name: 'questionnaire',
-          params:
+          name: 'questionnaire', // nous appelons le component
+          params: // et lui passons en paramètre les données du formulaire
             {
               name: self.form.firstname,
               firstname: self.form.name,

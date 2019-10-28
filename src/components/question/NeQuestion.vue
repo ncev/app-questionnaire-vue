@@ -1,12 +1,12 @@
 <template>
   <div class="hello">
-    <p>coucou</p>
-    <h1>{{'question'}}</h1>
+    <p>les questions pour l'enterprise:</p>
+    <h1>{{NE_form.enterprise}}</h1>
   </div>
 </template>
 
 <script>
-import list from '../../../ressources/quest.json'
+import list from '../../../ressources/quest.json' // lecture du fichier JSON avec les questions
 
 export default {
   name: 'question',
@@ -15,14 +15,19 @@ export default {
   },
   methods: {
     NE_init: function () {
-      const params = this.$route.params // hidrate form avec les données des paramètres
+      const params = this.$route.params // hidrate NE_form avec les données des paramètres
       for (const key of Object.keys(this.NE_form)) {
         this.NE_form[key] = params[key]
       }
       this.NE_initQuestions()
     },
     NE_initQuestions: function () {
-      console.log(list.data)
+      for (const entr of list.data) { // nous recherchons l'
+        if (entr.entreprise === this.NE_form.enterprise) {
+          this.NE_questionnaire = entr
+        }
+      }
+      console.log(this.NE_questionnaire)
     }
   },
   data: () => {
@@ -32,7 +37,7 @@ export default {
         firstname: '',
         enterprise: ''
       },
-      questions: []
+      NE_questionnaire: null
     }
   }
 }
