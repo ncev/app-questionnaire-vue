@@ -1,35 +1,108 @@
 <template>
   <div class="hello">
-    <h1>Test</h1>
-    <question question="cocuou"></question>
+    <h1>Ici vous pouvez vous connecter</h1>
+    <div>
+      <div class="col-12">
+        <b-card-group deck>
+          <b-card header="Login" class="text-center">
+            <b-form @submit="onSubmit">
+              <b-form-group
+                id="input-group-1"
+                label="Nom:"
+                label-for="input-1">
+                <b-form-input
+                  id="input-1"
+                  v-model="form.name"
+                  type="text"
+                  required
+                  placeholder="Nom">
+                </b-form-input>
+              </b-form-group>
+              <b-form-group
+                id="input-group-2"
+                label="Prenom:"
+                label-for="input-2">
+                <b-form-input
+                  id="input-2"
+                  v-model="form.firstname"
+                  type="text"
+                  required
+                  placeholder="Prenom">
+                </b-form-input>
+              </b-form-group>
+              <b-form-group id="input-group-3" label="Entreprise:" label-for="input-3">
+                <b-form-select
+                  id="input-3"
+                  :options="form.enterprise"
+                  v-model="form.selectedEntreprise"
+                  value-field="item"
+                  text-field="text"
+                  required>
+                </b-form-select>
+              </b-form-group>
+              <div>
+                <b-button block type="submit" variant="outline-success">Block Level Button</b-button>
+              </div>
+            </b-form>
+          </b-card>
+        </b-card-group>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import question from '@/components/question/question.vue'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import list from '../../ressources/quest.json'
+Vue.use(VueRouter)
 
 export default {
   name: 'neHome',
-  components: {
-    question
+  created: function () {
+    const entreprises = []
+    for (const n of list.data) {
+      entreprises.push(
+        {
+          value: n.entreprise,
+          text: n.entreprise
+        }
+      )
+    }
+    this.form.enterprise = this.form.enterprise.concat(entreprises)
+  },
+  data: () => {
+    return {
+      form: {
+        name: '',
+        firstname: '',
+        selectedEntreprise: 'SELECT_OPTION',
+        enterprise: [
+          {
+            item: 'SELECT_OPTION',
+            text: 'Veuillez choisir une option',
+            selected: true,
+            disabled: true
+          }
+        ]
+      }
+    }
+  },
+  methods: {
+    onSubmit (evt) {
+      const self = this
+      this.$router.push(
+        {
+          name: 'questionnaire',
+          params:
+            {
+              name: self.form.firstname,
+              firstname: self.form.name,
+              enterprise: self.form.selectedEntreprise
+            }
+        }
+      )
+    }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

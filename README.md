@@ -1,29 +1,5 @@
-# app-questionnaire-vue
+Il s'agit de développer la première partie du TP,
 
-## Project setup
-```
-npm install
-```
+en comprenant les demandes et en formatant correctement les components, le code
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+tout en appréhendant les outils (props, pouchDB, ...)

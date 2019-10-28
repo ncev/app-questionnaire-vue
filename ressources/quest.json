@@ -1,0 +1,74 @@
+{
+    "params": {
+        "pool": {
+            "amount": 2
+        }
+    },
+
+    "data": [
+        {
+            "entreprise": "ENTRE",
+            "questions": [
+                {
+                    "libelle":"salut",
+                    "question":"comment ca va ?",
+                    "responses":[
+                        {
+                            "text": "bonjour, au revoir",
+                            "points": 1
+                        },
+                        {
+                            "text": "salut c'est cool",
+                            "points": 0
+                        }
+                    ]
+                },
+                {
+                    "libelle": "coucouu",
+                    "question": "tranquille poto ?",
+                    "responses":[
+                        {
+                            "text": "wesh la street",
+                            "points": 1
+                        },
+                        {
+                            "text": "lol",
+                            "points": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "entreprise": "ENTRE2",
+            "questions": [
+                {
+                    "question":"yo l'poto trop rigolo?",
+                    "response": [
+                        {
+                            "text": "vive la biere",
+                            "points": 1
+                        },
+                        {
+                            "text": "ceci est un poisson à dos argenté",
+                            "points": 0
+                        }
+                    ]
+                },
+                {
+                    "question": "l'eau dans 20/30 ans y'en aura plus?",
+                    "response": [
+                        {
+                            "text": "bonjour",
+                            "points": 1
+                        },
+                        {
+                            "text": "au revoir",
+                            "points": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
