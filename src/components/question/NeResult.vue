@@ -8,11 +8,11 @@
 </template>
 
 <script>
-// import list from '../../../ressources/quest.json' // lecture du fichier JSON avec les questions
 
 export default {
   name: 'result',
   created: function () {
+    console.log(this.$route.params)
   },
   methods: {
   },

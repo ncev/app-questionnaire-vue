@@ -9,7 +9,7 @@
       </div>
     </div>
     <b-form>
-    <div v-for="(question, index) in NE_questionnaire.questions" :key="index">
+    <div v-for="(question, index) in getQuestions" :key="index">
       <div class="card bg-light mb-3">
         <div class="card-header">Question {{index + pool + 1}}</div>
         <div class="card-body">
@@ -32,25 +32,25 @@
 
 <script>
 import list from '../../../ressources/quest.json' // lecture du fichier JSON avec les questions
+import PouchDbManager from '../../mixin/pouchDbManager.js'
 
 export default {
   name: 'question',
+  mixins: [PouchDbManager],
   created: function () {
+    const params = this.$route.params // hidrate NE_form avec les données des paramètres
+    for (const key of Object.keys(this.NE_form)) {
+      this.NE_form[key] = params[key]
+    }
     this.NE_init()
   },
   methods: {
     NE_init: function () {
-      this.score = this.$route.params.score
-
       const maxPool = parseInt(list.params.pool.amount)
-      let pool = parseInt(this.$route.params.pool) // obtentions du pool
+      let pool = this.pool
       pool = pool * maxPool - maxPool
       this.pool = pool
       this.maxPool = maxPool
-      const params = this.$route.params // hidrate NE_form avec les données des paramètres
-      for (const key of Object.keys(this.NE_form)) {
-        this.NE_form[key] = params[key]
-      }
       this.NE_initQuestions()
     },
     NE_initQuestions: function () {
@@ -63,14 +63,24 @@ export default {
         this.$router.push('/') // on redirige l'utilisateur vers l'accueil
         return
       }
+      this.checkEndPool()
+      this.sliceQuestions()
+    },
+    checkEndPool: function () {
       this.endPool = this.pool + this.maxPool >= this.NE_questionnaire.questions.length
-      console.log(this.endPool)
+    },
+    sliceQuestions: function () {
       let questions = this.NE_questionnaire.questions
       questions = questions.slice(this.pool, this.pool + this.maxPool)
-      this.NE_questionnaire.questions = questions
+      this.questions = questions
+    },
+    resolveQuestions: function () {
+      for (const question of this.questions) {
+        question.val = []
+      }
     },
     onSubmit: function (evt) {
-      const questions = this.NE_questionnaire.questions
+      const questions = this.questions
       const answers = [] // va contenir les résultats de nos questions
       for (const question of questions) { // pour chacune des questions répondu
         const answer = { // on créée une nouvelle variable answer
@@ -103,6 +113,7 @@ export default {
         }
         answers.push(answer)
       }
+      this.answers = this.answers.concat(answers)
       this.calcScore(answers)
     },
     calcScore: function (answers) {
@@ -112,19 +123,32 @@ export default {
           score++
         }
       }
-      this.routeResult(score)
+      this.score += score
+      this.routeResult()
     },
-    routeResult (score) {
+    routeResult: function () {
       const self = this
+      if (this.endPool) {
+        self.saveAnswers(this.answers)
 
-      this.$router.push({
-        name: 'result',
-        params:
-          {
-            entreprise: self.NE_questionnaire.entreprise,
-            score: score
-          }
-      })
+        this.$router.push({
+          name: 'result',
+          params:
+            {
+              score: this.score,
+              name: self.NE_form.name,
+              firstname: self.NE_form.firstname,
+              entreprise: self.NE_questionnaire.entreprise
+            }
+        })
+      } else {
+        this.pool += this.maxPool
+        this.sliceQuestions()
+        this.resolveQuestions()
+        this.checkEndPool()
+      }
+    },
+    saveScore: function () {
     }
   },
   data: () => {
@@ -135,10 +159,17 @@ export default {
         enterprise: ''
       },
       NE_questionnaire: null,
-      pool: 0,
+      questions: [],
+      answers: [],
+      pool: 1,
       maxPool: 0,
       score: 0,
       endPool: false
+    }
+  },
+  computed: {
+    getQuestions: function () {
+      return this.questions
     }
   }
 }
