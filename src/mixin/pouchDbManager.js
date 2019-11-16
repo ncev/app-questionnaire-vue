@@ -2,6 +2,10 @@ import PouchDB from 'pouchdb'
 var db = new PouchDB('test_user')
 var remoteCouch = 'http://127.0.0.1:5984/app-questionnaire'
 
+const data = {
+  answers: null
+}
+
 export const PouchDbManager = {
   methods: {
     saveAnswers: function (answers) {
@@ -9,13 +13,9 @@ export const PouchDbManager = {
         '_id': new Date().toString(),
         'obj': answers
       }
-      this.answers = answers
-      console.log(answers)
+      this.data.answers = answers
       db.put(obj, function callback (err, result) {
-        if (!err) {
-          console.log('result added')
-          console.log(result)
-        } else {
+        if (err) {
           console.log(err)
         }
       })
@@ -23,11 +23,14 @@ export const PouchDbManager = {
     },
     replicate: function () {
       db.replicate.to(remoteCouch)
+    },
+    getData: function () {
+      return this.data
     }
   },
   data: () => {
     return {
-      answers: Object
+      data
     }
   }
 }

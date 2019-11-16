@@ -76,13 +76,11 @@ export default {
       this.questions = questions
     },
     setVals: function () {
-      debugger
       for (const question of this.questions) {
         question.val = []
       }
     },
     onSubmit: function (evt) {
-      debugger
       const questions = this.questions
       const answers = [] // va contenir les résultats de nos questions
       for (const question of questions) { // pour chacune des questions répondu
@@ -130,7 +128,6 @@ export default {
       this.routeResult()
     },
     routeResult: function () {
-      debugger
       const self = this
       if (this.endPool) {
         self.saveAnswers(this.answers)

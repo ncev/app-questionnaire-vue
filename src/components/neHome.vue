@@ -60,7 +60,6 @@ Vue.use(VueRouter)
 export default {
   name: 'neHome',
   created: function () { // lors du chargement de la page
-    debugger
     const entreprises = []
     for (const n of list.data) { // pour chaque données (questions d'une entreprise) issue du fichier
       entreprises.push( // nous insérons les données de l'entreprise au sein du tableau entreprises
