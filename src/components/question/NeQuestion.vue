@@ -63,8 +63,9 @@ export default {
         this.$router.push('/') // on redirige l'utilisateur vers l'accueil
         return
       }
-      this.checkEndPool()
-      this.sliceQuestions()
+      this.checkEndPool() // nous regardons s'il s'agit du dernier pool de questions
+      this.sliceQuestions() // nous selections uniquement les questions du pool
+      this.setVals() // nous placons les valeurs des réponses (tableau servent à contenir les réponses de l'utilisateur)
     },
     checkEndPool: function () {
       this.endPool = this.pool + this.maxPool >= this.NE_questionnaire.questions.length
@@ -74,12 +75,14 @@ export default {
       questions = questions.slice(this.pool, this.pool + this.maxPool)
       this.questions = questions
     },
-    resolveQuestions: function () {
+    setVals: function () {
+      debugger
       for (const question of this.questions) {
         question.val = []
       }
     },
     onSubmit: function (evt) {
+      debugger
       const questions = this.questions
       const answers = [] // va contenir les résultats de nos questions
       for (const question of questions) { // pour chacune des questions répondu
@@ -92,7 +95,7 @@ export default {
          * cette condition vient voir si l'utilisateur a répondu à AU MOINS une réponse parmie celle proposé
          * si, non cela signifie qu'il n'a rien coché, donc pas nécessaire de continuer
          */
-        if (question.val !== undefined && question.val.length !== 0) {
+        if (question.val !== undefined) {
           let total = 0 // cette variable va contenir la somme des points de chaque réponse
           let totalRep = 0
           for (const response of question.responses) { // pour chaque questions,
@@ -127,6 +130,7 @@ export default {
       this.routeResult()
     },
     routeResult: function () {
+      debugger
       const self = this
       if (this.endPool) {
         self.saveAnswers(this.answers)
@@ -144,8 +148,8 @@ export default {
       } else {
         this.pool += this.maxPool
         this.sliceQuestions()
-        this.resolveQuestions()
         this.checkEndPool()
+        this.setVals()
       }
     },
     saveScore: function () {
