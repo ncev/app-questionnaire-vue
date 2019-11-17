@@ -8,7 +8,11 @@ const data = {
 
 export const PouchDbManager = {
   methods: {
-    saveAnswers: function (answers) {
+    saveAnswers: function (answers, user) {
+      answers = {
+        user: user,
+        answers: answers
+      }
       const obj = {
         '_id': new Date().toString(),
         'obj': answers

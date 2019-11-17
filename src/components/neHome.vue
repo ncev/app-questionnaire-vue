@@ -1,9 +1,9 @@
 <template>
-  <div class="hello">
+  <div class="hello text-center">
     <h1>Ici vous pouvez vous connecter</h1>
     <div>
       <div class="col-12">
-        <b-card-group deck>
+        <b-card-group deck style="margin-bottom: 25px;">
           <b-card header="Login" class="text-center">
             <b-form @submit="onSubmit">
               <b-form-group
@@ -41,11 +41,16 @@
                 </b-form-select>
               </b-form-group>
               <div>
-                <b-button block type="submit" variant="outline-success">Block Level Button</b-button>
+                <b-button block type="submit" variant="outline-success">Valider</b-button>
               </div>
             </b-form>
           </b-card>
         </b-card-group>
+
+        <b-card header="Gestion" class="text-center">
+          <b-button block variant="outline-primary" style="margin-bottom: 25px;">Visualiser les résultats</b-button>
+          <b-button block variant="outline-info">Administration</b-button>
+        </b-card>
       </div>
     </div>
   </div>

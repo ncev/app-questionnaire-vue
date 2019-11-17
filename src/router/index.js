@@ -32,7 +32,7 @@ const routes = [
     component: questionnaire
   },
   {
-    path: '/result/:name/:firstname/:entreprise/:score',
+    path: '/result/',
     name: 'result',
     component: result
   }

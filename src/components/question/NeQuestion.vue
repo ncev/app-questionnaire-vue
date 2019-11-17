@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12">
+  <div class="col-12 text-center">
     <h1>{{NE_questionnaire.entreprise}}</h1>
     <div class="card text-white bg-info mb-3">
       <div class="card-header">nombres de questions pour l'enterprise: {{NE_questionnaire.questions.length}}</div>
@@ -129,18 +129,11 @@ export default {
     },
     routeResult: function () {
       const self = this
-      if (this.endPool) {
-        self.saveAnswers(this.answers)
+      if (self.endPool) {
+        self.saveAnswers(self.answers, self.NE_form)
 
         this.$router.push({
-          name: 'result',
-          params:
-            {
-              score: this.score,
-              name: self.NE_form.name,
-              firstname: self.NE_form.firstname,
-              entreprise: self.NE_questionnaire.entreprise
-            }
+          name: 'result'
         })
       } else {
         this.pool += this.maxPool
