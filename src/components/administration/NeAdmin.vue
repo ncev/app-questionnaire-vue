@@ -1,17 +1,22 @@
 <template>
-  <h1 class="text-center">Administration</h1>
+  <div class="col-12">
+    <h1 class="text-center">Administration</h1>
+    <b-button block variant="primary" @click="onEntrepriseClick()">entreprise</b-button>
+    <b-button block variant="info" @click="onPoolClick()">pool de questions</b-button>
+  </div>
 </template>
 
 <script>
-import PouchDbManager from '../../mixin/pouchDbManager.js'
 
 export default {
   name: 'admin',
-  mixins: [PouchDbManager],
-  created: function () {
-    this.getList(function (n) {
-      console.log(n)
-    })
+  methods: {
+    onPoolClick: function () {
+      this.$router.push('/admin/pool')
+    },
+    onEntrepriseClick: function () {
+      this.$router.push('/admin/entreprise')
+    }
   }
 }
 </script>

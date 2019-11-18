@@ -68,7 +68,6 @@ export default {
   created: function () { // lors du chargement de la page
     const self = this
     this.getList(function (list) {
-      console.log(list)
       const entreprises = []
       for (const n of list.data) { // pour chaque données (questions d'une entreprise) issue du fichier
         entreprises.push( // nous insérons les données de l'entreprise au sein du tableau entreprises
