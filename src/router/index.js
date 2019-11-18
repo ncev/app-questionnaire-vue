@@ -6,6 +6,7 @@ import result from '../components/question/NeResult.vue'
 import administration from '../components/administration/NeAdmin.vue'
 import adminPool from '../components/administration/NeAdminPool.vue'
 import adminEntreprise from '../components/administration/NeAdminEntreprise.vue'
+import adminQuestion from '../components/administration/NeAdminQuestions.vue'
 import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -53,6 +54,11 @@ const routes = [
     path: '/admin/entreprise',
     name: 'admin-entreprise',
     component: adminEntreprise
+  },
+  {
+    path: '/admin/questions/:entreprise',
+    name: 'admin-questions',
+    component: adminQuestion
   }
 ]
 
