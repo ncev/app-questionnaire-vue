@@ -38,19 +38,18 @@ export const PouchDbManager = {
     },
     getList: function (func) {
       const self = this
-      if (self.data.list !== null && self.data.list !== undefined) {
+      if (self.data.list !== null) {
         func(self.data.list)
       } else {
-        this.data = null
         dbAdmin.get('questions', function callback (err, result) {
           if (err) {
             console.log(err)
           }
-          console.log(self)
+          self.data.list_admin = result
+          self.data.list = result.data
           func(result.data)
         })
       }
-      return null
     },
     setList: function (list, func) {
       this.data.list_admin.data = list

@@ -1,9 +1,9 @@
 <template>
-  <div class="col-12">
+  <div class="col-12" v-cloak>
     <h1 class="text-center">Administration des entreprises</h1>
     <div>
       <b-form>
-        <div v-for="(entreprise, index) in this.list.data" :key="index" style="margin-bottom: 50px;">
+        <div v-for="(entreprise, index) in getListData" :key="index" style="margin-bottom: 50px;">
           <hr>
           <b-form-input
           v-model="entreprise.entreprise"
@@ -14,7 +14,7 @@
           <b-button-group style="width: 100%">
             <b-button variant="success" @click="modify(entreprise)">Modifier</b-button>
             <b-button variant="secondary" @click="removeEntreprise(entreprise)">Supprimer</b-button>
-            <b-button variant="info">ses questions</b-button>
+            <b-button variant="info" @click="viewQuestions(entreprise)">ses questions</b-button>
           </b-button-group>
         </div>
         <div>
@@ -40,9 +40,9 @@ export default {
   mixins: [PouchDbManager],
   created: function () {
     const self = this
+    self.setEntreprises()
     this.getList(function (list) {
-      self.list = list
-      self.setEntreprises()
+      self.list = self.data.list
     })
   },
   methods: {
@@ -53,6 +53,7 @@ export default {
       this.setList(this.list)
     },
     addEntreprise: function () {
+      console.log(this.list.data)
       const obj = {
         'entreprise': this.newEntreprise,
         'questions': []
@@ -74,6 +75,17 @@ export default {
         this.list.data.splice(i, 1)
       }
       this.setList(this.list)
+    },
+    viewQuestions: function (entreprise) {
+      this.$router.push('/admin/questions/' + entreprise.entreprise)
+    }
+  },
+  computed: {
+    getListData: function () {
+      if (this.list === null || this.list === undefined) {
+        return []
+      }
+      return this.list.data
     }
   }
 }
