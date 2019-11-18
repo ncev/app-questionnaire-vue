@@ -31,22 +31,26 @@
 </template>
 
 <script>
-import list from '../../../ressources/quest.json' // lecture du fichier JSON avec les questions
 import PouchDbManager from '../../mixin/pouchDbManager.js'
 
 export default {
   name: 'question',
   mixins: [PouchDbManager],
   created: function () {
-    const params = this.$route.params // hidrate NE_form avec les données des paramètres
-    for (const key of Object.keys(this.NE_form)) {
-      this.NE_form[key] = params[key]
-    }
-    this.NE_init()
+    const self = this
+    this.getList(function (list) {
+      self.list = list
+      const params = self.$route.params // hidrate NE_form avec les données des paramètres
+      for (const key of Object.keys(self.NE_form)) {
+        self.NE_form[key] = params[key]
+      }
+      self.NE_init()
+    })
   },
   methods: {
     NE_init: function () {
-      const maxPool = parseInt(list.params.pool.amount)
+      console.log(this.list)
+      const maxPool = parseInt(this.list.params.pool.amount)
       let pool = this.pool
       pool = pool * maxPool - maxPool
       this.pool = pool
@@ -54,7 +58,7 @@ export default {
       this.NE_initQuestions()
     },
     NE_initQuestions: function () {
-      for (const entr of list.data) { // nous recherchons l'entreprise passé en paramètre
+      for (const entr of this.list.data) { // nous recherchons l'entreprise passé en paramètre
         if (entr.entreprise === this.NE_form.enterprise) {
           this.NE_questionnaire = entr
         }
@@ -63,9 +67,9 @@ export default {
         this.$router.push('/') // on redirige l'utilisateur vers l'accueil
         return
       }
-      this.checkEndPool() // nous regardons s'il s'agit du dernier pool de questions
+      this.shuffleArray()
       this.sliceQuestions() // nous selections uniquement les questions du pool
-      this.setVals() // nous placons les valeurs des réponses (tableau servent à contenir les réponses de l'utilisateur)
+      this.setVals() // nous placons les tableaux de réponses (tableau servent à contenir les réponses de l'utilisateur)
     },
     checkEndPool: function () {
       this.endPool = this.pool + this.maxPool >= this.NE_questionnaire.questions.length
@@ -142,7 +146,23 @@ export default {
         this.setVals()
       }
     },
-    saveScore: function () {
+    shuffleArray: function () { // permet de randomiser la position des questions
+      var array = this.NE_questionnaire.questions
+      var currentIndex = array.length; var temporaryValue; var randomIndex
+
+      // While there remain elements to shuffle...
+      while (currentIndex !== 0) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex -= 1
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex]
+        array[currentIndex] = array[randomIndex]
+        array[randomIndex] = temporaryValue
+      }
+
+      this.NE_questionnaire.questions = array
     }
   },
   data: () => {

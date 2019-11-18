@@ -59,14 +59,17 @@
 
 <script>
 import PouchDbManager from '../../mixin/pouchDbManager.js'
-import list from '../../../ressources/quest.json' // lecture du fichier JSON avec les questions
 
 export default {
   name: 'result',
   mixins: [PouchDbManager],
   created: function () {
-    this.fillUser() // initialisation des donnés de l'utilisateur
-    this.fillQuestions() // initialisations des données sur les questions
+    const self = this
+    this.getList(function (list) {
+      self.list = list
+      self.fillUser() // initialisation des donnés de l'utilisateur
+      self.fillQuestions() // initialisations des données sur les questions
+    })
   },
   methods: {
     fillUser: function () {
@@ -74,7 +77,7 @@ export default {
     },
     fillQuestions: function () {
       this.data.questions = {} // va contenir les questions d'une entreprise
-      for (const q of list.data) {
+      for (const q of this.list.data) {
         console.log(q.entreprise)
         console.log(this.data.user.enterprise)
         if (q.entreprise === this.data.user.enterprise) {

@@ -59,22 +59,27 @@
 <script>
 import Vue from 'vue'
 import VueRouter from 'vue-router' // pour la redirection de l'utilisateur
-import list from '../../ressources/quest.json' // lecture du fichier JSON contenant les questions
+import PouchDbManager from '../mixin/pouchDbManager.js'
 Vue.use(VueRouter)
 
 export default {
   name: 'neHome',
+  mixins: [PouchDbManager],
   created: function () { // lors du chargement de la page
-    const entreprises = []
-    for (const n of list.data) { // pour chaque données (questions d'une entreprise) issue du fichier
-      entreprises.push( // nous insérons les données de l'entreprise au sein du tableau entreprises
-        { // afin de les afficher dans le formulaire.
-          value: n.entreprise,
-          text: n.entreprise
-        }
-      )
-    }
-    this.form.enterprise = this.form.enterprise.concat(entreprises) // nous ajoutons les données du tableau à celui du formulaire
+    const self = this
+    this.getList(function (list) {
+      console.log(list)
+      const entreprises = []
+      for (const n of list.data) { // pour chaque données (questions d'une entreprise) issue du fichier
+        entreprises.push( // nous insérons les données de l'entreprise au sein du tableau entreprises
+          { // afin de les afficher dans le formulaire.
+            value: n.entreprise,
+            text: n.entreprise
+          }
+        )
+      }
+      self.form.enterprise = self.form.enterprise.concat(entreprises) // nous ajoutons les données du tableau à celui du formulaire
+    })
   },
   data: () => {
     return {
@@ -90,7 +95,8 @@ export default {
             disabled: true
           }
         ]
-      }
+      },
+      list: null
     }
   },
   methods: {

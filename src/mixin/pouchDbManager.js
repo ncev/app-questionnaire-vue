@@ -1,9 +1,13 @@
 import PouchDB from 'pouchdb'
-var db = new PouchDB('test_user')
-var remoteCouch = 'http://127.0.0.1:5984/app-questionnaire'
+var db = new PouchDB('app-questionnaire')
+var remoteCouchIp = 'http://127.0.0.1:5984/app-questionnaire'
+
+var dbAdmin = new PouchDB('http://127.0.0.1:5984/app-questionnaire-questions')
 
 const data = {
-  answers: null
+  answers: null,
+  list: null,
+  list_admin: null
 }
 
 export const PouchDbManager = {
@@ -26,10 +30,25 @@ export const PouchDbManager = {
       this.replicate()
     },
     replicate: function () {
-      db.replicate.to(remoteCouch)
+      db.replicate.to(remoteCouchIp)
     },
     getData: function () {
       return this.data
+    },
+    getList: function (func) {
+      const self = this
+      if (self.data.list !== null) {
+        func(self.data.list)
+      } else {
+        dbAdmin.get('questions', function callback (err, result) {
+          if (err) {
+            console.log(err)
+          }
+          self.data.list_admin = result
+          self.data.list = result.data
+          func(result.data)
+        })
+      }
     }
   },
   data: () => {

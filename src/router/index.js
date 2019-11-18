@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import questionnaire from '../components/question/NeQuestion.vue'
 import result from '../components/question/NeResult.vue'
+import administration from '../components/administration/NeAdmin.vue'
 import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -35,6 +36,11 @@ const routes = [
     path: '/result/',
     name: 'result',
     component: result
+  },
+  {
+    path: '/admin/',
+    name: 'admin',
+    component: administration
   }
 ]
 
