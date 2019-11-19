@@ -123,6 +123,7 @@
             "entreprise": "ENTRE2",
             "questions": [
                 {
+                    "libelle": "question 1",
                     "question":"yo l'poto trop rigolo?",
                     "responses": [
                         {
@@ -137,6 +138,7 @@
                     "val": []
                 },
                 {
+                    "libelle": "question 2",
                     "question": "l'eau dans 20/30 ans y'en aura plus?",
                     "responses": [
                         {

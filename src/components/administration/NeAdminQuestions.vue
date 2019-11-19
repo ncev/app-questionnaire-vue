@@ -115,7 +115,6 @@ export default {
         question.responses = []
         this.data.questions.questions.push(question)
         this.initNewQuestion()
-        console.log(this.list)
         this.setList(this.list)
       }
     },

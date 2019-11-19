@@ -1,10 +1,10 @@
 <template>
   <div class="col-12">
     <div class="text-center">
+       <b-button block variant="outline-primary" style="margin-bottom: 25px;" @click="onBtnAccueilClick()">Retour à l'accueil</b-button>
       <h1>Résultat</h1>
       <h3>votre score: {{data.user.score}}</h3>
     </div>
-
     <b-card bg-variant="info" text-variant="white" header="Typologie des résultats" header-class="text-center" style="margin-bottom: 50px; font-size: 25px;">
       <b-card-text>
         <b-media>
@@ -98,6 +98,9 @@ export default {
         return '#2ecc71'
       }
       return '#c0392b'
+    },
+    onBtnAccueilClick: function () {
+      this.$router.push('/')
     }
   },
   computed: {
