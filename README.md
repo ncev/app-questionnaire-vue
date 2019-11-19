@@ -1,23 +1,14 @@
-Travail effectué:
+dernier cours
 
- -> Développement de l'interface de question
- -> calcul du résultat
- -> développement de pools
- -> sauvegardes des résultats
- 
-Pour ce faire j'ai utiliser un Mixin, qui centralise la communication avec PouchDB,
-une base de données, CouchDb nommé 'app-questionnaire'.
+durant ce cours, l'administration a pu être finalisé, comprenant:
 
-au final trois component coexistent:
+-> ajout, modification et suppresion d'entreprise
+-> ajout, modification et suppresion de questions
+-> ajout, modification et suppresion des réponses aux questions
 
- * neHome (accueil, l'utilisateur se connecte et choisi son entreprise)
- * neQuestion (l'utilisateur répond aux diffèrentes questions, pour une question il y a de 1 à N, tel que specifié dans le .JSON)
- * neResult (affichage des résultats)
+est également pris en charge la gestion des scores pour les questions ainsi que la visualisation des réponses
 
-et un Mixin: pouchDbManager
+pour finir diffèrents bugs ont pu être résolu durant cette session:
 
-
-à faire:
-
- -> affichage des résultats
- -> administration: (gestion des entreprises, des résultats et des questions (CRUD))
+-> bugs de rafraichissement de l'écran après mises à jour des données des questions
+-> bugs d'affichage de synchronisation avec couchDb

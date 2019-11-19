@@ -109,9 +109,9 @@ export default {
         this.setList(this.list)
       }
     },
-    addQuestion: function () {
+    addQuestion: function () { // ajout d'une question
       const question = this.new_question
-      if (question.libelle !== '' & question.question !== '') {
+      if (question.libelle !== '' & question.question !== '') { // vérification de l'integrité des donnés
         question.responses = []
         this.data.questions.questions.push(question)
         this.initNewQuestion()
@@ -122,7 +122,7 @@ export default {
     viewResponses: function (question) {
       this.$router.push('/admin/questions/' + this.entreprise + '/' + question.libelle)
     },
-    refreshComponent: function () {
+    refreshComponent: function () { // rafraichir le component.
       this.show = true
       this.$forceUpdate()
     }
