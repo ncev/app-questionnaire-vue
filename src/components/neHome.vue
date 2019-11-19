@@ -48,7 +48,7 @@
         </b-card-group>
 
         <b-card header="Gestion" class="text-center">
-          <b-button block variant="outline-primary" style="margin-bottom: 25px;">Visualiser les résultats</b-button>
+          <b-button block variant="outline-primary" style="margin-bottom: 25px;" @click="redirectVisualiser">Visualiser les résultats</b-button>
           <b-button block variant="outline-info" @click="redirectAdminitration()">Administration</b-button>
         </b-card>
       </div>
@@ -115,6 +115,9 @@ export default {
     },
     redirectAdminitration: function () {
       this.$router.push('/admin')
+    },
+    redirectVisualiser: function () {
+      this.$router.push('checkresults')
     }
   }
 }

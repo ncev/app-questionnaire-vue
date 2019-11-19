@@ -1,6 +1,9 @@
 <template>
   <div class="col-12">
-    <h1 class="text-center">Résultat</h1>
+    <div class="text-center">
+      <h1>Résultat</h1>
+      <h3>votre score: {{data.user.score}}</h3>
+    </div>
 
     <b-card bg-variant="info" text-variant="white" header="Typologie des résultats" header-class="text-center" style="margin-bottom: 50px; font-size: 25px;">
       <b-card-text>
@@ -73,7 +76,8 @@ export default {
   },
   methods: {
     fillUser: function () {
-      this.data.user = this.data.answers.user // va contenir les données de l'utilisateur en paramètre
+      this.data.user = this.data.answers.user // va contenir les données de l'utilisateur en paramètre (comprenant les réponses)
+      console.log(this.data.user)
     },
     fillQuestions: function () {
       this.data.questions = {} // va contenir les questions d'une entreprise

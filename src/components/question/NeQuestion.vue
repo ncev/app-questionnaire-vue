@@ -134,7 +134,9 @@ export default {
     routeResult: function () {
       const self = this
       if (self.endPool) {
-        self.saveAnswers(self.answers, self.NE_form)
+        const user = JSON.parse(JSON.stringify(self.NE_form))
+        user.score = this.score
+        self.saveAnswers(self.answers, user)
         this.$router.push({
           name: 'result'
         })

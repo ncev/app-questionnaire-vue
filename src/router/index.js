@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import questionnaire from '../components/question/NeQuestion.vue'
 import result from '../components/question/NeResult.vue'
+import checkresults from '../components/question/NeCheckResult.vue'
 import administration from '../components/administration/NeAdmin.vue'
 import adminPool from '../components/administration/NeAdminPool.vue'
 import adminEntreprise from '../components/administration/NeAdminEntreprise.vue'
@@ -40,6 +41,11 @@ const routes = [
     path: '/result/',
     name: 'result',
     component: result
+  },
+  {
+    path: '/checkresults',
+    name: 'checkresults',
+    component: checkresults
   },
   {
     path: '/admin/',

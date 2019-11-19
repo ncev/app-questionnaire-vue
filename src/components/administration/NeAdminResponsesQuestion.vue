@@ -56,14 +56,14 @@ export default {
   name: 'admin-response-questions',
   mixins: [PouchDbManager],
   created: function () {
-    this.getParams()
-    this.initNewReponse()
+    this.getParams() // obtentions des paramètres
+    this.initNewReponse() // prépare une variable pour l'ajout de nouvelles réponses
     this.show = false
     const self = this
     this.getList(function (list) {
       self.list = list
-      self.find_question()
-      self.refreshComponent()
+      self.find_question() // nous trouvons les questions
+      self.refreshComponent() // nous rechargeons les données une fois rechargées
     })
   },
   methods: {
@@ -99,9 +99,9 @@ export default {
       this.question = question
     },
     modifyResponse: function () {
-      this.setList(this.list)
+      this.setList(this.list) // mise à jours des données
     },
-    removeResponse: function (reponse) {
+    removeResponse: function (reponse) { // nous supprimons une réponse
       let i = 0
       let tmpReponse = null
       for (const data of this.question.responses) { // nous recherchons la question
@@ -117,7 +117,7 @@ export default {
         this.setList(this.list)
       }
     },
-    addReponse: function () {
+    addReponse: function () { // nous ajoutons des réponses
       if (this.new_reponse.text !== '') {
         this.question.responses.push(this.new_reponse)
         this.setList(this.list)
