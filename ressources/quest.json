@@ -24,7 +24,8 @@
                             "text": "test",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 },
                 {
                     "libelle": "coucouu",
@@ -38,7 +39,8 @@
                             "text": "lol",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 },
                 {
                     "libelle": "coucouu",
@@ -52,7 +54,8 @@
                             "text": "lol",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 },
                 {
                     "libelle": "coucouu",
@@ -66,7 +69,8 @@
                             "text": "lol",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 },
                 {
                     "libelle": "coucouu",
@@ -80,7 +84,8 @@
                             "text": "lol",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 },
                 {
                     "libelle": "coucouu",
@@ -94,7 +99,8 @@
                             "text": "lol",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 },
                 {
                     "libelle": "coucouu",
@@ -108,7 +114,8 @@
                             "text": "lol",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 }
             ]
         },
@@ -126,7 +133,8 @@
                             "text": "ceci est un poisson à dos argenté",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 },
                 {
                     "question": "l'eau dans 20/30 ans y'en aura plus?",
@@ -139,7 +147,8 @@
                             "text": "au revoir",
                             "points": 0
                         }
-                    ]
+                    ],
+                    "val": []
                 }
             ]
         }
