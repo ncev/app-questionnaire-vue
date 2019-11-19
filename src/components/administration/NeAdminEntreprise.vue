@@ -2,8 +2,8 @@
   <div class="col-12" v-cloak>
     <h1 class="text-center">Administration des entreprises</h1>
     <div>
-      <b-form>
-        <div v-for="(entreprise, index) in getListData" :key="index" style="margin-bottom: 50px;">
+      <b-form v-if="show">
+        <div v-for="(entreprise, index) in getListData()" :key="index" style="margin-bottom: 50px;">
           <hr>
           <b-form-input
           v-model="entreprise.entreprise"
@@ -39,10 +39,12 @@ export default {
   name: 'admin-entreprise',
   mixins: [PouchDbManager],
   created: function () {
+    this.show = false
     const self = this
     self.setEntreprises()
     this.getList(function (list) {
-      self.list = self.data.list
+      self.list = list
+      self.refreshComponent()
     })
   },
   methods: {
@@ -53,7 +55,6 @@ export default {
       this.setList(this.list)
     },
     addEntreprise: function () {
-      console.log(this.list.data)
       const obj = {
         'entreprise': this.newEntreprise,
         'questions': []
@@ -61,32 +62,36 @@ export default {
       this.list.data.push(obj)
       this.setList(this.list)
     },
-    removeEntreprise: function (entreprise) {
+    removeEntreprise: function (entreprise) { // suppresion d'entreprise
       let i = 0
       let tmpEntreprise = null
       for (const data of this.list.data) {
-        if (data.entreprise === entreprise.entreprise) {
+        if (data.entreprise === entreprise.entreprise) { // nous recherchons l'entreprise choisi
           tmpEntreprise = data
           break
         }
         i++
       }
-      if (tmpEntreprise != null) {
-        this.list.data.splice(i, 1)
+      if (tmpEntreprise != null) { // si elle a pu être trouvé, alors...
+        this.list.data.splice(i, 1) // nous la supprimons
       }
-      this.setList(this.list)
+      this.setList(this.list) // sauvegarde des modifications
     },
     viewQuestions: function (entreprise) {
       this.$router.push('/admin/questions/' + entreprise.entreprise)
-    }
-  },
-  computed: {
+    },
     getListData: function () {
       if (this.list === null || this.list === undefined) {
         return []
       }
       return this.list.data
+    },
+    refreshComponent: function () {
+      this.show = true
+      this.$forceUpdate()
     }
+  },
+  computed: {
   }
 }
 </script>

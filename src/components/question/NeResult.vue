@@ -78,8 +78,6 @@ export default {
     fillQuestions: function () {
       this.data.questions = {} // va contenir les questions d'une entreprise
       for (const q of this.list.data) {
-        console.log(q.entreprise)
-        console.log(this.data.user.enterprise)
         if (q.entreprise === this.data.user.enterprise) {
           this.data.questions = q
         }
@@ -101,7 +99,6 @@ export default {
   },
   computed: {
     getQuestions: function () {
-      console.log(this.data.questions.questions)
       return this.data.questions.questions
     }
   }

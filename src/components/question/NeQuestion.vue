@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     NE_init: function () {
-      console.log(this.list)
       const maxPool = parseInt(this.list.params.pool.amount)
       let pool = this.pool
       pool = pool * maxPool - maxPool
@@ -67,6 +66,7 @@ export default {
         this.$router.push('/') // on redirige l'utilisateur vers l'accueil
         return
       }
+      this.checkEndPool()
       this.shuffleArray()
       this.sliceQuestions() // nous selections uniquement les questions du pool
       this.setVals() // nous placons les tableaux de réponses (tableau servent à contenir les réponses de l'utilisateur)
@@ -135,7 +135,6 @@ export default {
       const self = this
       if (self.endPool) {
         self.saveAnswers(self.answers, self.NE_form)
-
         this.$router.push({
           name: 'result'
         })
