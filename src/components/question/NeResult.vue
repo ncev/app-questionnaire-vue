@@ -77,7 +77,6 @@ export default {
   methods: {
     fillUser: function () {
       this.data.user = this.data.answers.user // va contenir les données de l'utilisateur en paramètre (comprenant les réponses)
-      console.log(this.data.user)
     },
     fillQuestions: function () {
       this.data.questions = {} // va contenir les questions d'une entreprise
