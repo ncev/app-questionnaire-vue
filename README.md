@@ -19,3 +19,7 @@ pour cela, il vous est nécessaire de créer de base de données:
 
 -> app-questionnaire: ne nécessite rien de spécial, si ce n'est d'être accesible
 -> app-questionnaire-questions: nécessite de contenir UN document, nommé 'questions', contenant les données du fichier .json dans ressources/quest.json
+
+lien: ncev.github.io
+
+NB sur le lien, l'application tourne mais ne permet pas l'affichage des questions et entreprise car l'application ne se base pas sur un fichier .json mais sur une base de données CouchDB
