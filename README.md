@@ -15,7 +15,7 @@ pour finir diffèrents bugs ont pu être résolu durant cette session:
 
 ici le fichier .json contenant les questions est conservé, toutefois il n'est pas utilisé, ainsi il va nécessité l'utilisation de couchDB
 
-pour cela, il vous est nécessaire de créer de base de données:
+pour cela, il vous est nécessaire de créer deux base de données:
 
 -> app-questionnaire: ne nécessite rien de spécial, si ce n'est d'être accesible
 
