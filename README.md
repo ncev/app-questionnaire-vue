@@ -18,6 +18,7 @@ ici le fichier .json contenant les questions est conservé, toutefois il n'est p
 pour cela, il vous est nécessaire de créer de base de données:
 
 -> app-questionnaire: ne nécessite rien de spécial, si ce n'est d'être accesible
+
 -> app-questionnaire-questions: nécessite de contenir UN document, nommé 'questions', contenant les données du fichier .json dans ressources/quest.json
 
 lien: ncev.github.io
