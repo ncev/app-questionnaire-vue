@@ -23,6 +23,6 @@ pour cela, il vous est nécessaire de créer deux base de données:
 
 lien: ncev.github.io
 
-NB sur le lien, l'application tourne mais ne permet pas l'affichage des questions et entreprise car l'application ne se base pas sur un fichier .json mais sur une base de données CouchDB
+NB sur le lien, l'application tourne mais nécessite CouchDb local car l'application ne se base pas sur un fichier .json mais sur une base de données CouchDB
 
 EDIT: ajouter "data" en attribut parent dans le document 'questions' pour les contenu des questions
